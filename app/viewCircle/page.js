@@ -1,61 +1,52 @@
-"use client"
-import { Typography, Grid, Box, Button} from "@mui/material";
-import Image from "next/image";
-import Layout from '../components/appbar'
-// import { createMuiTheme } from '@material-ui/core/styles';
-// import purple from '@material-ui/core/colors/purple';
-// import green from '@material-ui/core/colors/green';
-//import download from 'images/download.jpeg'
-import { createTheme } from '@mui/material/styles';
-import { useRouter } from "next/navigation";
-import { SignedIn, SignedOut, SignIn } from '@clerk/nextjs'
 
+"use client"
+import { Typography, Grid, Box, Button, IconButton } from "@mui/material";
+import AddIcon from '@mui/icons-material/Add';
+import Layout from '../components/appbar'; // Ensure this path is correct
+import { SignedIn, SignedOut } from '@clerk/nextjs';
 
 export default function ViewCircle() {
+    return (
+        <>
+            <SignedIn>
+                <Grid container sx={{ minHeight: '100vh', backgroundColor: 'black', alignItems: 'center', justifyContent: 'center' }}>
+                    <Layout />
+                    <Box sx={{
+                        width: '100vw',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        minHeight: '100vh',
+                        backgroundImage: 'linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(1, 1, 1, 0.2)), url("/images/orbits.jpg")',
+                        backgroundSize: 'cover',
+                        backgroundPosition: 'center',
+                    }}>
+                        <Button
+                            color="primary"
+                            aria-label="add"
+                            size="large"
+                            sx={{
+                                borderRadius: '50%', // Perfect circle
+                                padding: 2,
+                                fontSize: '1.25rem',
+                                width: 56, // Ensures the size is enough for the icon and clickable area
+                                height: 56,
+                            }}
+                        >
+                            Add Circle 
+                        </Button>
+                    </Box>
+                </Grid>
+            </SignedIn>
 
-
-  return (
-    <>
-    <SignedOut>
-    <Grid
-      container
-      spacing={0}
-      direction="column"
-      alignItems="center"
-      justifyContent="center"
-      sx={{minHeight: '100vh',
-        backgroundColor: 'black',
-          
-      }}
-      >
-      <Box>
-      <Layout />
-      </Box>
-      <Box 
-      sx = {{
-        width: '100vw',
-        mb: 6, 
-        display: 'inline', 
-        alignItems: 'center', 
-        justifyContent: 'center', 
-        minHeight: '100vh',
-        backgroundImage: 'linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(1,1,1,300.2)), url("/images/orbits.jpg")',
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        }}>
-          <Box sx = {{pt: 40}}>
-            
-        <Typography variant = 'h2'  style={{ color: 'white', textAlign: 'center', fontWeight: 'bold'}}>Sign in to view circles</Typography>
-        </Box>
-  
-
-        
-        </Box>
-
-        
-    </Grid>
-    </SignedOut>
-</>
-
-  )
+            <SignedOut>
+                <Grid container sx={{ minHeight: '100vh', backgroundColor: 'black', alignItems: 'center', justifyContent: 'center' }}>
+                    <Layout />
+                    <Typography variant="h2" sx={{ color: 'white', textAlign: 'center', fontWeight: 'bold' }}>
+                        Sign in to view circles
+                    </Typography>
+                </Grid>
+            </SignedOut>
+        </>
+    );
 }
