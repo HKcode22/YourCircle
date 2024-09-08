@@ -4,7 +4,7 @@ import { Card, Typography, Grid, Box, Button, IconButton, CardContent, Modal, st
 import AddIcon from '@mui/icons-material/Add';
 import Layout from '../components/appbar'; // Ensure this path is correct
 import { SignedIn, SignedOut } from '@clerk/nextjs';
-import db from '@/firebase';
+import {db} from '@/firebase';
 import { useState, useEffect } from "react";
 
 
