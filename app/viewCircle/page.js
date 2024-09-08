@@ -1,6 +1,6 @@
 
 "use client"
-import { Card, Typography, Grid, Box, Button, IconButton, CardContent } from "@mui/material";
+import { Card, Typography, Grid, Box, Button, IconButton, CardContent, Modal, style, Paper, TextField, Text } from "@mui/material";
 import AddIcon from '@mui/icons-material/Add';
 import Layout from '../components/appbar'; // Ensure this path is correct
 import { SignedIn, SignedOut } from '@clerk/nextjs';
@@ -10,11 +10,60 @@ import { useState, useEffect } from "react";
 
 // Fetch data
 const Circle = ({ circleId }) => {
+
+
+    // useState for modal
+    const [openMod, setOpenMod] = useState(false);
+    const handleOpen = () => setOpenMod(true);
+    const handleClose = () => setOpenMod(false);
+
+
+    const [text, setText] = useState('') // set text
+    // useState for textbox
+    const [groupName, setName] = useState('')
+    const [about, setAbout] = useState('')
+
+    const handleSubmit = async () => {
+        body: JSON.stringify({text}) // Ensures backend expects text
+    }
+
+
     // useState to store the circle data fetched from the Firestore DB
     const [circle, setCircle] = useState(null);
 
     // indicates whether data is still being fetched 
     const [loading, setLoading] = useState(true);
+
+    // Save text
+    const saveName = async () => {
+        if(!groupName){
+            alert("Please enter name");
+            return;
+        }
+
+        const batch = writeBatch(db);
+        const groupDocRef = doc(collection(db, 'groups')); // automatically generate a new doc ID for the group
+
+        // Add new group to the batch
+        batch.set(groupDocRef, {
+            name: groupName,
+            description: about,
+            createdAt: new Date() // Records Data created
+
+        });
+
+        try{
+            await batch.commit(); // Commit the batch to firestore
+            console.log('Group created successfully!');
+            // Reset group name
+            setName('');
+            setAbout('');
+        }
+        catch(error){
+            alert("Error creating group: ", error);
+        }
+        
+    }
 
     useEffect(() => {
         // aync function to fetch circle data
@@ -68,11 +117,12 @@ const Circle = ({ circleId }) => {
                         backgroundSize: 'cover',
                         backgroundPosition: 'center',
                     }}>
+                        {/* Button to add Circle */}
                         <IconButton
                             color="primary"
                             aria-label="add"
                             size="large"
-                            
+                            onClick={handleOpen}
                             sx={{
                                 borderWidth: 0,
                                 borderStyle: 'solid',
@@ -87,6 +137,49 @@ const Circle = ({ circleId }) => {
                                 }
                             }}
                         >
+                            {/* Open Window to add circle */}
+                            <Modal
+                                open={openMod}
+                                onClose={handleClose}
+                                aria-labelledby="modal-modal-title"
+                                aria-describedby="modal-modal-description">
+                                    <Paper sx={{p: 4, width: '50%', bgcolor: 'white', border: 5, borderColor: 'gray'}}>
+                                        <Typography sx = {{mb: 1}}>Create yourCircle</Typography>
+                                        <TextField value={groupName}
+                                            onChange={(e) => setName(e.target.value)}
+                                            label = "Enter Name"
+                                            fullWidth
+                                            multiline
+                                            rows={1}
+                                            variant="outlined"
+                                            sx={{
+                                                mb: 2
+                                            }}
+                                        >
+                                        </TextField>
+
+
+                                        <TextField value={about}
+                                        onChange={(e) => setAbout(e.target.value)}
+                                        label = "About"
+                                        fullWidth
+                                        multiline
+                                        rows={1}
+                                        variant="outlined"
+                                        sx={{
+                                            mb: 2
+                                        }}
+                                        >
+                                        </TextField>
+
+
+                                        <Button
+                                        variant="contained"
+                                        color="primary"
+                                        onClick={handleSubmit}
+                                        > Submit </Button>
+                                    </Paper>
+                                </Modal>
                             <AddIcon />
                         </IconButton>
                         {circle ? (
