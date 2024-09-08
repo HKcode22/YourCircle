@@ -26,7 +26,7 @@ const Circle = ({ circleId }) => {
                     setCircle(doc.data()); // if circle data exist, update the circle state with fetched data
                 }
                 else{
-                    console.log("Circle does not exist!") // if circle doesn't exist, display error message (change it so that it alerts the window)
+                    alert.log("Circle does not exist!") // if circle doesn't exist, display error message (change it so that it alerts the window)
                 }
             }
             catch (error){
@@ -55,8 +55,11 @@ const Circle = ({ circleId }) => {
                 <Grid container sx={{ minHeight: '100vh', backgroundColor: 'black', alignItems: 'center', justifyContent: 'center' }}>
                     <Layout />
                     <Card>
+
+                    {/* Background Box */}
                     <Box sx={{
                         width: '100vw',
+                        flexDirection: 'column',
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
@@ -65,6 +68,27 @@ const Circle = ({ circleId }) => {
                         backgroundSize: 'cover',
                         backgroundPosition: 'center',
                     }}>
+                        <IconButton
+                            color="primary"
+                            aria-label="add"
+                            size="large"
+                            
+                            sx={{
+                                borderWidth: 0,
+                                borderStyle: 'solid',
+                                backgroundColor: 'rgba(0, 0, 0, 1.0)',
+                                borderRadius: '50%', // Perfect circle
+                                padding: 2,
+                                fontSize: '1.25rem',
+                                width: 200, // Ensures the size is enough for the icon and clickable area
+                                height: 200,
+                                '&:hover':{
+                                    backgroundColor: 'rgba(0, 0, 0, 1.0)'
+                                }
+                            }}
+                        >
+                            <AddIcon />
+                        </IconButton>
                         {circle ? (
                             <CardContent>
                                 <Typography variant='h5'> {circle.name} </Typography>
@@ -75,20 +99,8 @@ const Circle = ({ circleId }) => {
                                 No circle found
                             </Typography>
                         )}
-                        <Button
-                            color="primary"
-                            aria-label="add"
-                            size="large"
-                            sx={{
-                                borderRadius: '50%', // Perfect circle
-                                padding: 2,
-                                fontSize: '1.25rem',
-                                width: 56, // Ensures the size is enough for the icon and clickable area
-                                height: 56,
-                            }}
-                        >
-                            Add Circle 
-                        </Button>
+
+                        
                     </Box>
                     </Card>
                 </Grid>
