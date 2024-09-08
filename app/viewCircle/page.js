@@ -11,6 +11,11 @@ import { useState, useEffect } from "react";
 // Fetch data
 const Circle = ({ circleId }) => {
 
+    const [isClient, setClient] = useState(false);
+
+    useEffect(() => {
+    setClient(true); // Component did mount
+    }, []);
 
     // useState for modal
     const [openMod, setOpenMod] = useState(false);
