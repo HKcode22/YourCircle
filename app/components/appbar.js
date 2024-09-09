@@ -29,28 +29,30 @@ const Layout = ({ children }) => {
         <>
         {/* Navigation */}
       <AppBar position={"fixed"} style={{background: 'transparent', boxShadow: 'none', margin: 0, padding: 0}}>
-      <Toolbar>
-        <Button href = '/' variant={"body1"} style = {{color: 'white'}}>
-            yourCircle
-        </Button>
+      <Toolbar style={{justifyContent: 'center'}}>
+        <Box sx={{ display: 'flex', justifyContent: 'flex-start' }}>
+            <Button href = '/' variant={"body1"} style = {{color: 'white'}}>
+                yourCircle
+            </Button>
 
-        <Box sx = {{textAlign: 'center', justifyContent: 'center'}}>
+            <Box sx = {{textAlign: 'center', justifyContent: 'center'}}>
 
-        <Button variant={"body1"} style = {{color: 'white'}}>
-            Home
-        </Button>
+            {/* <Button variant={"body1"} style = {{color: 'white'}}>
+                Home
+            </Button> */}
 
-        <Button onClick = {goStory} variant={"body1"} style = {{color: 'white'}}>
-            Our Story
-        </Button>
+            <Button onClick = {goStory} variant={"body1"} style = {{color: 'white'}}>
+                Our Story
+            </Button>
 
-        <Button onClick = {goView} variant={"body1"} style = {{color: 'white'}}>
-            View Circles
-        </Button>
+            <Button onClick = {goView} variant={"body1"} style = {{color: 'white'}}>
+                View Circles
+            </Button>
+        </Box>
 
-        <Button variant={"body1"} style = {{color: 'white'}}>
+        {/* <Button variant={"body1"} style = {{color: 'white'}}>
             Join Us
-        </Button>
+        </Button> */}
 
         <SignedOut>
             <Button href="/sign-in" variant={"body1"} style = {{color: 'white'}}>

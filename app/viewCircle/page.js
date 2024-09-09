@@ -1,6 +1,6 @@
 
 "use client"
-import { Card, Typography, Grid, Box, Button, IconButton, CardContent, Modal, style, Paper, TextField, Text } from "@mui/material";
+import { Card, Typography, Grid, Box, Button, IconButton, CardContent, Modal, Paper, TextField } from "@mui/material";
 import AddIcon from '@mui/icons-material/Add';
 import Layout from '../components/appbar'; // Ensure this path is correct
 import { SignedIn, SignedOut } from '@clerk/nextjs';
@@ -32,12 +32,23 @@ const Circle = ({ circleId }) => {
         body: JSON.stringify({text}) // Ensures backend expects text
     }
 
-
     // useState to store the circle data fetched from the Firestore DB
     const [circle, setCircle] = useState(null);
 
     // indicates whether data is still being fetched 
     const [loading, setLoading] = useState(true);
+
+    // Style for modal
+    const style = {
+        position : 'absolute',
+        top: '50%',
+        left: '50%',
+        transform: 'translate(-50%, -50%)',
+        //width: 40000,
+        bgcolor: '#0a0a0a',
+        p: 4,
+        borderRadius: 2,
+        }
 
     // Save text
     const saveName = async () => {
@@ -99,8 +110,6 @@ const Circle = ({ circleId }) => {
 
 
 
-
-
     return (
         <>
 
@@ -147,21 +156,48 @@ const Circle = ({ circleId }) => {
                                 open={openMod}
                                 onClose={handleClose}
                                 aria-labelledby="modal-modal-title"
-                                aria-describedby="modal-modal-description">
-                                    <Paper sx={{p: 4, width: '50%', bgcolor: 'white', border: 5, borderColor: 'gray'}}>
-                                        <Typography sx = {{mb: 1}}>Create yourCircle</Typography>
-                                        <TextField value={groupName}
-                                            onChange={(e) => setName(e.target.value)}
-                                            label = "Enter Name"
-                                            fullWidth
-                                            multiline
-                                            rows={1}
-                                            variant="outlined"
-                                            sx={{
-                                                mb: 2
-                                            }}
+                                aria-describedby="modal-modal-description"
+                                >
+
+                                    <Box sx={style}>
+
+                                        <Typography  sx={{mb: 2, color: 'white'}}>Create your Circle</Typography>
+
+                                    <TextField value={groupName}
+                                        onChange={(e) => setName(e.target.value)}
+                                        label = "Name"
+                                        fullWidth
+                                        multiline
+                                        rows={1}
+                                        variant="outlined"
+                                        sx={{
+                                            mb: 2,
+                                            '& .MuiInputBase-input': {
+                                                color: 'white', // Changes the text color inside the input
+                                              },
+                                              '& .MuiOutlinedInput-root': {
+                                                '& fieldset': {
+                                                  borderColor: 'white', // Changes the border color
+                                                },
+                                                '&:hover fieldset': {
+                                                  borderColor: 'white', // Changes the border color on hover
+                                                },
+                                                '&.Mui-focused fieldset': {
+                                                  borderColor: 'white', // Changes the border color when focused
+                                                }
+                                              },
+                                              '& .MuiInputLabel-outlined': {
+                                                color: 'gray', // Initial label color
+                                              },
+                                              '& .MuiInputLabel-outlined.Mui-focused': {
+                                                color: 'white', // Label color when the input is focused
+                                              }
+
+                                        }}
                                         >
                                         </TextField>
+
+                                
 
 
                                         <TextField value={about}
@@ -172,7 +208,28 @@ const Circle = ({ circleId }) => {
                                         rows={1}
                                         variant="outlined"
                                         sx={{
-                                            mb: 2
+                                            mb: 2,
+                                            '& .MuiInputBase-input': {
+                                                color: 'white', // Changes the text color inside the input
+                                              },
+                                              '& .MuiOutlinedInput-root': {
+                                                '& fieldset': {
+                                                  borderColor: 'white', // Changes the border color
+                                                },
+                                                '&:hover fieldset': {
+                                                  borderColor: 'white', // Changes the border color on hover
+                                                },
+                                                '&.Mui-focused fieldset': {
+                                                  borderColor: 'white', // Changes the border color when focused
+                                                }
+                                              },
+                                              '& .MuiInputLabel-outlined': {
+                                                color: 'gray', // Initial label color
+                                              },
+                                              '& .MuiInputLabel-outlined.Mui-focused': {
+                                                color: 'white', // Label color when the input is focused
+                                              }
+
                                         }}
                                         >
                                         </TextField>
@@ -183,7 +240,8 @@ const Circle = ({ circleId }) => {
                                         color="primary"
                                         onClick={handleSubmit}
                                         > Submit </Button>
-                                    </Paper>
+      
+                                    </Box>
                                 </Modal>
                             <AddIcon />
                         </IconButton>
