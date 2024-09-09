@@ -1,5 +1,5 @@
 "use client"
-import { Typography, Grid, Box, Button} from "@mui/material";
+import { Typography, Grid, Box, Button, Paper} from "@mui/material";
 import Image from "next/image";
 import Layout from '../components/appbar'
 // import { createMuiTheme } from '@material-ui/core/styles';
@@ -52,15 +52,20 @@ export default function Home() {
         <Typography variant = 'h2'  style={{ color: 'white', textAlign: 'center', fontWeight: 'bold'}}>OUR STORY </Typography>
         </Box>
         <Box style={{textAlign: 'center'}}>
-        <Typography variant = 'h5'style={{ color: 'white', textAlign: 'center'}}>yourCircle began with a group of college students who discovered that sharing their favorite things - comics, gadgets, even stories - bought them closer together. We wanted to make that connection for everyone, so we created a space where sharing is not just about giving just about giving, but about deepening relationships and building a stronger community. In yourCircle, every shared item becomes a new memory, every exhange a step towards getting something more meaningful. Join us and turn everyday moments into lasting connections.</Typography>
+            <Paper style={{backgroundColor: 'transparent', width: '80%', padding: '20px', margin: 'auto' }}>
+            <Typography variant = 'h5'style={{ color: 'white', textAlign: 'center'}}>YourCircle began with a group of college students who discovered that sharing their favorite things - comics, gadgets, even stories - bought them closer together. We wanted to make that connection for everyone, so we created a space where sharing is not just about giving just about giving, but about deepening relationships and building a stronger community. In yourCircle, every shared item becomes a new memory, every exhange a step towards getting something more meaningful. Join us and turn everyday moments into lasting connections.</Typography>
+            </Paper>
+  
+            </Box>
 
-        
+
+
         </Box>
 
         
 
 
-      </Box>
+
     </Grid>
 </>
 

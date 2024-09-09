@@ -1,38 +1,18 @@
+"use client"
 import { SignIn } from '@clerk/nextjs'
 import { AppBar, Container, Toolbar, Typography, Box, Button } from "@mui/material";
 import Link from 'next/link'
+import { useNavigate} from "react-router-dom";
+import { useRouter } from 'next/navigation';
 
 export default function SignUpPage(){
+
+    const router = useRouter();
     return(
         <Container maxWidth="sm">
-            <AppBar position="static" sx={{backgroundColor: '#3f51b5'}}>
-                <Toolbar>
-                    <Typography
-                    variant='h6'
-                    sx={{
-                        flexGrow:1,
-                    }}
-                    > 
 
+            <Button onClick={() => router.back()}>Back</Button>
 
-                    Flashcard Saas
-                    </Typography>
-                    <Button color="inherit">
-                        <Link href="/sign-in" passHref>
-                            Login
-                        </Link>
-                    </Button>
-
-
-                    <Button color="inherit">
-                        <Link href="/sign-up" passHref>
-                            Sign Up
-                        </Link>
-                    </Button>
-
-
-                </Toolbar>
-            </AppBar>
 
             <Box 
             display="flex"

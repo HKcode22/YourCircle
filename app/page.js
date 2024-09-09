@@ -14,11 +14,6 @@ export default function Home() {
 
 
 
-  const Router = useRouter()
-
-  const goStory = () => {
-    Router.push("ourStory")
-  }
   return (
     
     <Grid
@@ -47,13 +42,12 @@ export default function Home() {
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         }}>
-          <Box sx = {{pt: 40}}>
-        <Typography variant = 'h2'  style={{ color: 'white', textAlign: 'center', fontWeight: 'bold'}}>YOUR CIRCLE AWAITS</Typography>
-        <Typography variant = 'h2'style={{ color: 'white', textAlign: 'center'}}>share freely, connect deeply</Typography>
-        <Typography  style= {{color: 'white', textAlign: 'center'}}>Join yourCircle to freely share, deeply connect, and strengthen relationships through giving and recieving</Typography>
-
-        
+        <Box sx={{ pt: 40 }}>
+            <Typography variant='h2' sx={{ color: 'white', textAlign: 'center', fontWeight: 'bold' }}>YOUR CIRCLE AWAITS</Typography>
+            <Typography variant='h2' sx={{ color: 'white', textAlign: 'center', mb: 2 }}>share freely, connect deeply</Typography>
+            <Typography sx={{ color: 'white', textAlign: 'center', mb: 2 }}>Join yourCircle to freely share, deeply connect, and strengthen relationships through giving and receiving</Typography>
         </Box>
+
 
         <Grid container justifyContent='center'>
         <Button 
@@ -62,7 +56,8 @@ export default function Home() {
           variant = 'contained' 
           color='primary'
           sx = {{borderRadius: 28}}
-          >Discover your circle</Button>
+          href = '/viewCircle'
+          >View your circle</Button>
         </Grid>
 
 
